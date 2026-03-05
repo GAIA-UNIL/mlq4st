@@ -10,8 +10,7 @@ A research codebase for **modeling and simulating spatio-temporal processes** by
 
 ## Paper
 
-- **JOSS (recommended citation)**: https://doi.org/10.21105/joss.09605  
-- **HAL preprint**: https://hal.science/hal-05441043/
+**HAL preprint**: https://hal.science/hal-05441043/
 
 ---
 
