@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Synthetic study for mlq4s (inspired by your Gapfilling EASY experiment).
+Synthetic study for mlq4st (inspired by your Gapfilling EASY experiment).
 
 This script:
   1) Builds a synthetic spatio-temporal dataset with covariate-driven non-Gaussian marginals:
@@ -10,7 +10,7 @@ This script:
         Y(t,s) = exp(mu(t,s) + sigma(t,s) * Z(t,s))
   2) Splits into train/test
   3) Builds an "oracle" ensemble on test (using the *true* mu/sigma + true GRF params)
-  4) Fits mlq4s for several marginal methods (knn/qrf/qrnn) and simulates ensembles
+  4) Fits mlq4st for several marginal methods (knn/qrf/qrnn) and simulates ensembles
   5) Produces paper-grade diagnostics:
         - time-series bands (oracle + each method) at a few sites
         - pooled QQ vs oracle
@@ -20,9 +20,9 @@ This script:
 
 Assumptions:
   - Your package exposes:
-        from mlq4s.pipeline import mlq4sModel
+        from mlq4st.pipeline import mlq4stModel
   - Your merged GRF file exposes:
-        from mlq4s.st_grf import simulate_gneiting_jax
+        from mlq4st.st_grf import simulate_gneiting_jax
 
 If your module names differ, adjust the imports below.
 
@@ -56,11 +56,11 @@ from numpy.linalg import cholesky
 # Imports from your package (adjust if needed)
 # ============================================================
 try:
-    from mlq4s.pipeline import mlq4sModel
-    from mlq4s.st_grf import simulate_gneiting_jax
+    from mlq4st.pipeline import mlq4stModel
+    from mlq4st.st_grf import simulate_gneiting_jax
 except Exception as e:
     raise ImportError(
-        "Could not import mlq4sModel / simulate_gneiting_jax.\n"
+        "Could not import mlq4stModel / simulate_gneiting_jax.\n"
         "Adjust the imports near the top of this script to match your package layout.\n"
         f"Original import error: {e}"
     )
@@ -130,7 +130,7 @@ class SyntheticStudyConfig:
     random_state: int = 0
 
     # Methods (you can edit these)
-    # Note: these are passed as marginal_kwargs to mlq4sModel
+    # Note: these are passed as marginal_kwargs to mlq4stModel
     # (SitewiseMarginal reads standardize_X, kernel/k/h for knn, qrf_* for qrf, qrnn_* for qrnn)
     methods: Tuple[Tuple[str, Dict[str, Any]], ...] = (
         ("qrf", dict(
@@ -437,7 +437,7 @@ def main(cfg: SyntheticStudyConfig) -> None:
     for method, marg_kwargs in cfg.methods:
         logger.info("Fitting method=%s ...", method)
 
-        model = mlq4sModel(
+        model = mlq4stModel(
             coords=s_coords,
             marginal_method=method,
             marginal_kwargs=dict(marg_kwargs),
