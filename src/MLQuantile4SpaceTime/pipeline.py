@@ -23,9 +23,7 @@ import numpy as np
 import pandas as pd
 
 from .marginal import SitewiseMarginal
-from .fit_gneiting import GneitingModel
-from .simulate import simulate_gneiting_jax
-
+from .st_grf import GneitingModel, simulate_gneiting_jax
 
 @dataclass
 class Quantile2SpaceTimeConfig:
