@@ -1,9 +1,9 @@
-# mlq4s: Machine-learning quantile regression for Space-Time processes
+# mlq4st: Machine-learning quantile regression for Space-Time processes
 
 [![HAL](https://img.shields.io/badge/HAL-hal--05441043-B03532)](https://hal.science/hal-05441043/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**mlq4s** is a Python package for **conditional distribution modeling** and **simulation of spatio-temporal processes**. It combines **machine-learning quantile regression** (to learn non-Gaussian, covariate-dependent marginals) with a **latent Gaussian random field (GRF)** (to enforce coherent space-time dependence).
+**mlq4st** is a Python package for **conditional distribution modeling** and **simulation of spatio-temporal processes**. It combines **machine-learning quantile regression** (to learn non-Gaussian, covariate-dependent marginals) with a **latent Gaussian random field (GRF)** (to enforce coherent space-time dependence).
 
 ---
 
@@ -33,4 +33,4 @@
 
 ### From GitHub (requires `git`)
 ```bash
-pip install "git+https://github.com/sobakrim/mlq4s.git@main"
+pip install "git+https://github.com/sobakrim/mlq4st.git@main"
